@@ -1,36 +1,40 @@
-import React, { Component } from 'react';
-import List from './List';
-import './App.css';
+import React from 'react'
+import ShoppingItem from './ShoppingItem'
 
-
-class App extends Component {
-  static defaultProps = {
-    store: {
-      lists: [],
-      allCards: {},
-    }
-  };
-
-  render() {
-    const { store } = this.props
-    return (
-      <main className='App'>
-        <header className='App-header'>
-          <h1>Trelloyes!</h1>
-        </header>
-        <div className='App-list'>
-          {store.lists.map(list => (
-            <List
-              key={list.id}
-              header={list.header}
-              cards={list.cardIds.map(id => store.allCards[id])}
-            />
-          ))}
-        </div>
-      </main>
-    );
-  }
+//STEP 1
+/*export default function ShoppingList(props) {
+  return (
+    <ul>
+      {props.items.map((item, i) =>
+        <ShoppingItem
+          key={i}
+          item={item}
+        />
+      )}
+    </ul>
+  )
 }
 
+ShoppingList.defaultProps = {
+  items: []
+}*/
 
-export default App;
+//STEP 2
+export default function ShoppingList(props) {
+    return (
+        <ul>
+        {props.items.map((item, i) =>
+          <ShoppingItem
+            key={i}
+            item={item}
+            onDeleteItem={props.onDeleteItem}
+            onCheckItem={props.onCheckItem}
+          />
+        )}
+      </ul>
+    )
+  }
+  
+  ShoppingList.defaultProps = {
+    items: []
+  }

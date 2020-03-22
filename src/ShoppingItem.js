@@ -1,6 +1,7 @@
 import React from 'react';
 
-export default function ShoppingItem(props) {
+//STEP 1
+/*export default function ShoppingItem(props) {
   return (
     <li>
       <h2 style={{
@@ -16,4 +17,60 @@ export default function ShoppingItem(props) {
 
 ShoppingItem.defaultProps = {
   item: {}
-}
+}*/
+
+
+//STEP 2
+/*function ShoppingItem(props) {
+    return (
+      <li>
+        <h2 style={{
+          textDecoration: props.item.checked ? 'line-through' : null,
+        }}>
+          {props.item.name}
+        </h2>
+        <button
+          onClick={props.onCheckItem}
+          type='button'>
+          check
+        </button>
+        <button
+          onClick={props.onDeleteItem}
+          type='button'>
+          delete
+        </button>
+      </li>
+    )
+  }
+  
+  ShoppingItem.defaultProps = {
+    item: {}
+  }*/
+
+
+  //STEP 3 - Let's pass the item into the callback prop with arrow functions.
+export default function ShoppingItem(props) {
+    return (
+      <li>
+        <h2 style={{
+          textDecoration: props.item.checked ? 'line-through' : null,
+        }}>
+          {props.item.name}
+        </h2>
+        <button
+            onClick={() => props.onCheckItem(props.item)}
+            type='button'>
+            check
+        </button>
+        <button
+            onClick={() => props.onDeleteItem(props.item)}
+            type='button'>
+            delete
+        </button>
+      </li>
+    )
+  }
+  
+  ShoppingItem.defaultProps = {
+    item: {}
+  }
